@@ -2,7 +2,7 @@
  * Misc utility routines for accessing chip-specific features
  * of the SiliconBackplane-based Broadcom chips.
  *
- * Copyright (C) 1999-2014, Broadcom Corporation
+ * Copyright (C) 1999-2015, Broadcom Corporation
  * 
  *      Unless you and Broadcom execute a separate written software license
  * agreement governing use of this software, this software is licensed to you
@@ -22,7 +22,7 @@
  * software in any way with any other Broadcom software provided under a license
  * other than the GPL, without Broadcom's express prior written consent.
  *
- * $Id: siutils.c 499555 2014-08-29 02:40:49Z $
+ * $Id: siutils.c 548451 2015-04-13 08:20:45Z $
  */
 
 #include <bcm_cfg.h>
@@ -440,6 +440,7 @@ si_chipid_fixup(si_t *sih)
 
 	ASSERT(sii->chipnew == 0);
 	switch (sih->chip) {
+		case BCM43562_CHIP_ID:
 		case BCM43570_CHIP_ID:
 		case BCM4358_CHIP_ID:
 			sii->chipnew = sih->chip; /* save it */
@@ -565,7 +566,7 @@ si_doattach(si_info_t *sii, uint devid, osl_t *osh, void *regs,
 
 	if ((sih->chip == BCM4358_CHIP_ID) ||
 		(sih->chip == BCM43570_CHIP_ID) ||
-		(sih->chip == BCM4358_CHIP_ID)) {
+		(sih->chip == BCM43562_CHIP_ID)) {
 		si_chipid_fixup(sih);
 	}
 
